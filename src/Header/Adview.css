@@ -1,0 +1,43 @@
+.adview__black {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #111;
+	opacity: 0.7;
+	z-index: 200;
+}
+
+.adview__content {
+	display: flex;
+	flex-direction: row;
+	background-color: #fff;
+}
+
+.adview__content > img {
+	position: absolute;
+	top: 20%;
+	left: 20%;
+
+	width: 60%;
+	/* transform: translate(20%, 60%); */
+	object-fit: contain;
+	z-index: 250;
+}
+
+.adview__close {
+	position: absolute;
+	top: 20%;
+	right: 20%;
+	z-index: 250;
+}
+
+.adview__close > button {
+	background-color: transparent;
+	border: none;
+}
+
+.adview__close > button:focus {
+	outline: none;
+}
