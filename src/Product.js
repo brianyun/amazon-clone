@@ -1,7 +1,7 @@
 import React from "react";
 import "./Product.css";
 
-const Product = () => {
+const Product = ({ title, image, price, rating }) => {
 	const addToBasket = () => {
 		console.log("hello basket");
 	};
@@ -9,22 +9,23 @@ const Product = () => {
 	return (
 		<div className="product">
 			<div className="product__info">
-				<p>The lean startup</p>
+				<p>{title}</p>
 
 				<div className="product__price">
 					<small>$</small>
-					<strong>19.99</strong>
+					<strong>{price}</strong>
 				</div>
 
 				<div className="product__rating">
-					<p>&#9734;</p>
+					{Array(rating)
+						.fill()
+						.map((_, i) => {
+							return <p>&#11088;</p>;
+						})}
 				</div>
 			</div>
 
-			<img
-				src="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
-				alt=""
-			/>
+			<img src={image} alt="" />
 
 			<button onClick={() => addToBasket()}>Add to basket</button>
 		</div>
