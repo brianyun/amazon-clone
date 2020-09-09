@@ -1,6 +1,6 @@
 import React from "react";
 import "./BasketItem.css";
-import { useStateValue } from "./StateProvider";
+import { useStateValue } from "../reducers/StateProvider";
 
 const BasketItem = () => {
 	const [{ basket }, dispatch] = useStateValue();

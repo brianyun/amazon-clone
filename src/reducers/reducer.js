@@ -1,5 +1,6 @@
 export const initialState = {
 	basket: [],
+	isDark: false,
 };
 
 const reducer = (state, action) => {
@@ -18,6 +19,12 @@ const reducer = (state, action) => {
 					...state.basket.slice(0, action.index),
 					...state.basket.slice(action.index + 1),
 				],
+			};
+
+		case "TOGGLE_LIGHT":
+			return {
+				...state,
+				isDark: !state.isDark,
 			};
 
 		default:
