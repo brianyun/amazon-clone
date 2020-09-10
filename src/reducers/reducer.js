@@ -3,6 +3,10 @@ export const initialState = {
 	isDark: false,
 };
 
+//how to make a selector::
+export const getBasketTotal = (basket) =>
+	basket?.reduce((amount, item) => item.price + amount, 0);
+
 const reducer = (state, action) => {
 	console.log(action);
 	switch (action.type) {
@@ -13,12 +17,21 @@ const reducer = (state, action) => {
 			};
 
 		case "REMOVE_FROM_BASKET":
+			// finds the first one and then returns it.
+			const index = state.basket.findIndex(
+				(basketItem) => basketItem.id === action.id
+			);
+			let newBasket = [...state.basket];
+			if (index >= 0) {
+				newBasket.splice(index, 1);
+			} else {
+				console.warn(
+					`Can't remove product (id: ${action.id} as it's not in the basket!)`
+				);
+			}
 			return {
 				...state,
-				basket: [
-					...state.basket.slice(0, action.index),
-					...state.basket.slice(action.index + 1),
-				],
+				basket: newBasket,
 			};
 
 		case "TOGGLE_LIGHT":

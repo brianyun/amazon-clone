@@ -2,26 +2,20 @@ import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./Header/Header";
-import Footer from "./Header/Footer";
-import Adview from "./Header/Adview";
 import Home from "./Home/Home";
 import Checkout from "./Checkout/Checkout";
-
-import { useStateValue } from "./reducers/StateProvider";
+import Login from "./Login/Login";
 
 function App() {
-	const [{ isDark }] = useStateValue();
-
 	return (
 		<Router>
 			<div className="app">
 				<Header />
-				<Adview />
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route exact path="/checkout" component={Checkout} />
+					<Route exact path="/login" component={Login} />
 				</Switch>
-				<Footer />
 			</div>
 		</Router>
 	);
