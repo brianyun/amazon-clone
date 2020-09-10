@@ -1,6 +1,7 @@
 export const initialState = {
 	basket: [],
 	isDark: false,
+	user: null,
 };
 
 //how to make a selector::
@@ -38,6 +39,12 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				isDark: !state.isDark,
+			};
+
+		case "SET_USER":
+			return {
+				...state,
+				user: action.user,
 			};
 
 		default:
