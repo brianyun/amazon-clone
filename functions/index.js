@@ -19,7 +19,7 @@ app.use(express.json());
 app.get("/", (req, res) => res.status(200).send("hello wrld"));
 
 app.post("/payments/create", async (req, res) => {
-	const total = req.query.total;
+	const total = Math.ceil(req.query.total);
 	// {getBasketTotal(basket) * 100}
 	console.log("payment request recieved!, for this amount >>> ", total);
 

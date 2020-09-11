@@ -7,6 +7,7 @@ import { getBasketTotal } from "../reducers/reducer";
 import { Link, useHistory } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import Axios from "../axios";
+import { db } from "../firebase/firebase";
 
 const Payment = () => {
 	const [{ basket, user }, dispatch] = useStateValue();
@@ -53,9 +54,25 @@ const Payment = () => {
 				//destructure paymentIntent from response
 				//paymentIntent = payment confirmation.
 
+				//push order into database
+				db.collection("users")
+					.doc(user?.uid)
+					.collection("orders")
+					.doc(paymentIntent.id)
+					.set({
+						basket: basket,
+						amount: paymentIntent.amount,
+						created: paymentIntent.created,
+					});
+				//nosql 문법
+
 				setSucceeded(true);
 				setError(null);
 				setProcessing(false);
+
+				dispatch({
+					type: "EMPTY_BASKET",
+				});
 
 				//reason why history.replace, not history.push? ==> cause we don't want people to come back to the payment page.
 				history.replace("/orders");
