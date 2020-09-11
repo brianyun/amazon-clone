@@ -2,7 +2,7 @@ import React from "react";
 import "./CheckoutProduct.css";
 import { useStateValue } from "../reducers/StateProvider";
 
-const CheckoutProduct = ({ id, image, title, price, rating }) => {
+const CheckoutProduct = ({ id, image, title, price, rating, hideButton }) => {
 	const [{ basket }, dispatch] = useStateValue();
 
 	const removeFromBasket = () => {
@@ -32,14 +32,15 @@ const CheckoutProduct = ({ id, image, title, price, rating }) => {
 								return <p>&#11088;</p>;
 							})}
 					</div>
-
-					<button
-						onClick={() => {
-							removeFromBasket();
-						}}
-					>
-						Remove from cart
-					</button>
+					{!hideButton && (
+						<button
+							onClick={() => {
+								removeFromBasket();
+							}}
+						>
+							Remove from cart
+						</button>
+					)}
 				</div>
 			</div>
 		</div>
